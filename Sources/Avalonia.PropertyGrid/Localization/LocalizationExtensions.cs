@@ -34,7 +34,12 @@ public static class LocalizationExtensions
         // 🔥 自动释放：控件销毁时自动 Dispose
         control.Unloaded += ( s, e ) =>
         {
-            ( source as IDisposable )?.Dispose ( );
+            try
+            {
+                (source as IDisposable)?.Dispose();
+            }
+            catch { }
+            
             control.DataContext = null;
         };
     }
